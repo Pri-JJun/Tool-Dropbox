@@ -1,0 +1,103 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "cleanup (dry-run)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "dropbox_tool",
+      "args": ["cleanup", "-f", "${input:folder}", "--dry-run"],
+      "python": "${workspaceFolder}/.venv/bin/python",
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "cleanup --rename (dry-run)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "dropbox_tool",
+      "args": ["cleanup", "-f", "${input:folder}", "--rename", "--dry-run"],
+      "python": "${workspaceFolder}/.venv/bin/python",
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "⚠️ cleanup (실제 삭제)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "dropbox_tool",
+      "args": ["cleanup", "-f", "${input:folder}"],
+      "python": "${workspaceFolder}/.venv/bin/python",
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "⚠️ cleanup --rename (실제 삭제+이름변경)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "dropbox_tool",
+      "args": ["cleanup", "-f", "${input:folder}", "--rename"],
+      "python": "${workspaceFolder}/.venv/bin/python",
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "cleanup-similar (dry-run)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "dropbox_tool",
+      "args": [
+        "cleanup-similar",
+        "-f",
+        "${input:folder}",
+        "--threshold",
+        "${input:threshold}",
+        "--dry-run"
+      ],
+      "python": "${workspaceFolder}/.venv/bin/python",
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "⚠️ cleanup-similar (실제 삭제)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "dropbox_tool",
+      "args": ["cleanup-similar", "-f", "${input:folder}", "--threshold", "${input:threshold}"],
+      "python": "${workspaceFolder}/.venv/bin/python",
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "pytest",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "pytest",
+      "args": ["-v"],
+      "python": "${workspaceFolder}/.venv/bin/python",
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "justMyCode": false
+    }
+  ],
+  "inputs": [
+    {
+      "id": "folder",
+      "type": "promptString",
+      "description": "Dropbox 대상 폴더 (예: 사진, 사진/여행). cleanup은 비우면 루트 전체",
+      "default": "사진"
+    },
+    {
+      "id": "threshold",
+      "type": "promptString",
+      "description": "유사도 임계값 % (0~100, 기본 90)",
+      "default": "90"
+    }
+  ]
+}

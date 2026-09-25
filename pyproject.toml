@@ -1,0 +1,45 @@
+[project]
+name = "dropbox-tool"
+version = "0.1.0"
+description = "rclone 기반 Dropbox 중복/유사 파일 정리 도구"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "imagehash>=4.3.2",
+    "pillow>=12.3.0",
+]
+
+[project.scripts]
+dropbox-tool = "dropbox_tool.cli:main"
+
+[build-system]
+requires = ["uv_build>=0.12.18,<0.13.0"]
+build-backend = "uv_build"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py314"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = [
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "F",  # pyflakes
+    "I",  # isort
+    "B",  # flake8-bugbear
+    "UP", # pyupgrade
+]
+ignore = ["E501"] # 줄 길이는 formatter에 위임 (긴 문자열 리터럴 허용)
+
+[tool.ruff.format]
+quote-style = "double"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "ruff>=0.16.9",
+]
